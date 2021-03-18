@@ -467,29 +467,6 @@ class ContactComponent extends React.Component {
             />
           </div>
           <br />
-          {/* <MDBRow className="text-center">
-            <MDBCol md="4">
-              <MDBBtn tag="a" floating color="blue" className="accent-1">
-                <MDBIcon icon="map-marker-alt" />
-              </MDBBtn>
-              <p>New York, 94126</p>
-              <p className="mb-md-0">United States</p>
-            </MDBCol>
-            <MDBCol md="4">
-              <MDBBtn tag="a" floating color="blue" className="accent-1">
-                <MDBIcon icon="phone" />
-              </MDBBtn>
-              <p>+ 01 234 567 89</p>
-              <p className="mb-md-0">Mon - Fri, 8:00-22:00</p>
-            </MDBCol>
-            <MDBCol md="4">
-              <MDBBtn tag="a" floating color="blue" className="accent-1">
-                <MDBIcon icon="envelope" />
-              </MDBBtn>
-              <p>info@gmail.com</p>
-              <p className="mb-md-0">sale@gmail.com</p>
-            </MDBCol>
-          </MDBRow> */}
         </MDBCol>
       </MDBRow>
     </section>
