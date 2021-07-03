@@ -16,13 +16,8 @@ const HomeRoutes = {
     },
     {
       exact: true,
-      path: '/aboutus',
-      component: lazy(() => import('../views/AboutusPage'))
-    },
-    {
-      exact: true,
-      path: '/howitworks',
-      component: lazy(() => import('../views/HowitworksPage'))
+      path: '/components',
+      component: lazy(() => import('../views/ComponentsOverview'))
     },
 
     // ----------------------------------------------------------------------

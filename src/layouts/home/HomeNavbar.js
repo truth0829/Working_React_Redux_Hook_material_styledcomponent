@@ -3,6 +3,8 @@ import { useState, useRef } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import roundSpeed from '@iconify/icons-ic/round-speed';
 import menu2Fill from '@iconify/icons-eva/menu-2-fill';
+import bookOpenFill from '@iconify/icons-eva/book-open-fill';
+import roundStreetview from '@iconify/icons-ic/round-streetview';
 import { NavLink as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { alpha, experimentalStyled as styled } from '@material-ui/core/styles';
@@ -20,7 +22,7 @@ import {
   ListItemText
 } from '@material-ui/core';
 // routes
-import { PATH_AUTH, PATH_ERROR, PATH_HOME } from '../../routes/paths';
+import { PATH_HOME, PATH_DOCS } from '../../routes/paths';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
@@ -31,9 +33,10 @@ import MenuPopover from '../../components/MenuPopover';
 // ----------------------------------------------------------------------
 
 const MENU_LINKS = [
-  { title: 'ABOUT US', icon: homeFill, href: PATH_HOME.aboutus },
-  { title: 'HOW IT WORKS', icon: roundSpeed, href: PATH_HOME.howitworks },
-  { title: 'SIGN IN', icon: roundSpeed, href: PATH_AUTH.login }
+  { title: 'Home', icon: homeFill, href: '/' },
+  { title: 'Components', icon: roundStreetview, href: PATH_HOME.components },
+  { title: 'Dashboard', icon: roundSpeed, href: PATH_HOME.dashboard },
+  { title: 'Documentation', icon: bookOpenFill, href: PATH_DOCS.root }
 ];
 
 const APP_BAR_MOBILE = 64;
@@ -104,7 +107,7 @@ export default function HomeNavbar() {
                 duration: theme.transitions.duration.shortest
               }),
             '&:hover': { opacity: 0.48 },
-            ...{ color: 'common.white' },
+            ...(isHome && { color: 'common.white' }),
             ...(offset && { color: 'text.primary' })
           }}
         >
@@ -170,9 +173,9 @@ export default function HomeNavbar() {
 
           <Hidden mdDown>{renderMenuDesktop}</Hidden>
 
-          <RouterLink to={PATH_AUTH.register} underline="none">
-            <Button variant="contained">SIGN UP</Button>
-          </RouterLink>
+          <Button variant="contained" target="_blank" href={PATH_HOME.purchase}>
+            Purchase Now
+          </Button>
 
           <Hidden mdUp>
             <MIconButton

@@ -10,7 +10,6 @@ import {
   varFadeInLeft,
   varFadeInRight
 } from '../animate';
-import LandingCleanInterfaces from './LandingCleanInterfaces';
 
 // ----------------------------------------------------------------------
 

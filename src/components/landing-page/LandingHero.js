@@ -1,28 +1,17 @@
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
-import userTie from '@iconify-icons/fa-solid/user-tie';
-import usersSolid from '@iconify-icons/teenyicons/users-solid';
-import searchIcon from '@iconify-icons/fa-solid/search';
+import flashFill from '@iconify/icons-eva/flash-fill';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import {
-  Button,
-  Input,
-  Box,
-  Link,
-  Container,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import { Button, Box, Link, Container, Typography } from '@material-ui/core';
 // routes
-import { PATH_DASHBOARD, PATH_ERROR, PATH_HOME } from '../../routes/paths';
+import { PATH_DASHBOARD, PATH_HOME } from '../../routes/paths';
 //
 import {
   varFadeIn,
   varWrapEnter,
   varFadeInUp,
-  varFadeInDown,
   varFadeInRight
 } from '../animate';
 
@@ -44,8 +33,7 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
 
 const ContentStyle = styled('div')(({ theme }) => ({
   zIndex: 10,
-  width: '100%',
-  maxWidth: 800,
+  maxWidth: 520,
   margin: 'auto',
   textAlign: 'center',
   position: 'relative',
@@ -80,122 +68,119 @@ const HeroImgStyle = styled(motion.img)(({ theme }) => ({
   }
 }));
 
-const SearchStyle = styled('div')(({ theme }) => ({
-  width: '100%',
-  height: 50,
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  backgroundColor: '#F2F3F5',
-  borderRadius: 50,
-  paddingLeft: 20,
-  paddingRight: 140,
-  marginTop: 150
-}));
-
-// class
-const useStyles = makeStyles((theme) => ({
-  searchInput: {
-    width: '100%',
-    height: '100%',
-    padding: 0
-  },
-  searchbutton: {
-    height: '96%',
-    position: 'absolute',
-    right: 2,
-    borderRadius: 50
-  },
-  button: {
-    width: '100%',
-    lineHeight: '30px',
-    maxWidth: 200,
-    marginTop: 20,
-    margin: 20,
-    [theme.breakpoints.up('sm')]: {
-      margin: 0,
-      marginTop: 20,
-      marginRight: 40
-    }
-  }
-}));
-
 // ----------------------------------------------------------------------
 
 export default function LandingHero() {
-  const classes = useStyles();
   return (
     <>
       <RootStyle initial="initial" animate="animate" variants={varWrapEnter}>
         <HeroOverlayStyle
           alt="overlay"
-          src="/static/home/banner-image.jpg"
+          src="/static/home/overlay.svg"
           variants={varFadeIn}
         />
 
-        {/* <HeroImgStyle
+        <HeroImgStyle
           alt="hero"
           src="/static/home/hero.png"
           variants={varFadeInUp}
-        /> */}
+        />
 
         <Container maxWidth="lg">
           <ContentStyle>
-            <motion.div variants={varFadeInDown}>
-              <SearchStyle>
-                <Input
-                  placeholder="Please search needed service"
-                  disableUnderline
-                  fullWidth
-                />
-                <Button
-                  size="large"
-                  variant="contained"
-                  to={PATH_DASHBOARD.root}
-                  className={classes.searchbutton}
-                  startIcon={<Icon icon={searchIcon} width={20} height={20} />}
-                >
-                  SEARCH
-                </Button>
-              </SearchStyle>
-            </motion.div>
             <motion.div variants={varFadeInRight}>
-              <Typography
-                variant="h1"
-                sx={{ color: 'common.white', marginTop: 5 }}
-              >
+              <Typography variant="h1" sx={{ color: 'common.white' }}>
+                Start a <br />
+                New Project <br /> with
                 <Typography
                   component="span"
                   variant="h1"
                   sx={{ color: 'primary.main' }}
                 >
-                  Who are you?
+                  &nbsp;Minimal
                 </Typography>
               </Typography>
             </motion.div>
+
+            <motion.div variants={varFadeInRight}>
+              <Typography sx={{ py: 5, color: 'common.white' }}>
+                The starting point for your next project based on
+                easy-to-customize Material-UI © helps you build apps faster and
+                better.
+              </Typography>
+            </motion.div>
+
+            <Box
+              component={motion.div}
+              variants={varFadeInRight}
+              sx={{
+                mb: 5,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: { xs: 'center', md: 'flex-start' }
+              }}
+            >
+              <Box
+                component="img"
+                alt="sketch icon"
+                src="/static/icons/ic_sketch.svg"
+                sx={{ mr: 1, width: 20, height: 20 }}
+              />
+              <Link
+                underline="always"
+                href={PATH_HOME.cloud}
+                target="_blank"
+                sx={{ color: 'common.white' }}
+              >
+                Preview in Sketch Cloud
+              </Link>
+            </Box>
 
             <motion.div variants={varFadeInRight}>
               <Button
                 size="large"
                 variant="contained"
                 component={RouterLink}
-                to={PATH_ERROR.page404}
-                className={classes.button}
-                startIcon={<Icon icon={userTie} width={20} height={20} />}
+                to={PATH_DASHBOARD.root}
+                startIcon={<Icon icon={flashFill} width={20} height={20} />}
               >
-                USER
-              </Button>
-              <Button
-                size="large"
-                variant="contained"
-                component={RouterLink}
-                to={PATH_ERROR.page404}
-                className={classes.button}
-                startIcon={<Icon icon={usersSolid} width={20} height={20} />}
-              >
-                VENDOR
+                Live Preview
               </Button>
             </motion.div>
+
+            <Box
+              sx={{
+                mt: 5,
+                display: 'flex',
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                '& > :not(:last-of-type)': { mr: 1.5 }
+              }}
+            >
+              <motion.img
+                variants={varFadeInRight}
+                src="/static/icons/ic_m_sketch.svg"
+              />
+              <motion.img
+                variants={varFadeInRight}
+                src="/static/icons/ic_m_figma.svg"
+              />
+              <motion.img
+                variants={varFadeInRight}
+                src="/static/icons/ic_m_material.svg"
+              />
+              <motion.img
+                variants={varFadeInRight}
+                src="/static/icons/ic_m_react.svg"
+              />
+              <motion.img
+                variants={varFadeInRight}
+                src="/static/icons/ic_m_js.svg"
+              />
+              <motion.img
+                variants={varFadeInRight}
+                src="/static/icons/ic_m_ts.svg"
+              />
+            </Box>
           </ContentStyle>
         </Container>
       </RootStyle>

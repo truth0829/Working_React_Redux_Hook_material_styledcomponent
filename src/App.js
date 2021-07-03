@@ -3,6 +3,9 @@ import { createBrowserHistory } from 'history';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+// material
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 // routes
 import routes, { renderRoutes } from './routes';
 // redux
@@ -14,6 +17,12 @@ import Settings from './components/settings';
 import RtlLayout from './components/RtlLayout';
 import ScrollToTop from './components/ScrollToTop';
 import LoadingScreen from './components/LoadingScreen';
+import GoogleAnalytics from './components/GoogleAnalytics';
+import NotistackProvider from './components/NotistackProvider';
+
+// Using for Auth (Check doc https://minimals.cc/docs/authentication)
+import JwtProvider from './components/authentication/JwtProvider';
+// import FirebaseProvider from './components/authentication/FirebaseProvider';
 
 // ----------------------------------------------------------------------
 
@@ -26,11 +35,18 @@ export default function App() {
         <PersistGate loading={<LoadingScreen />} persistor={persistor}>
           <ThemeConfig>
             <RtlLayout>
-              <Router history={history}>
-                {/* <Settings /> */}
-                <ScrollToTop />
-                {renderRoutes(routes)}
-              </Router>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <NotistackProvider>
+                  <Router history={history}>
+                    <JwtProvider>
+                      <Settings />
+                      <ScrollToTop />
+                      <GoogleAnalytics />
+                      {renderRoutes(routes)}
+                    </JwtProvider>
+                  </Router>
+                </NotistackProvider>
+              </LocalizationProvider>
             </RtlLayout>
           </ThemeConfig>
         </PersistGate>

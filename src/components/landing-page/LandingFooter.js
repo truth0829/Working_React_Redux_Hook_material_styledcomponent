@@ -14,9 +14,9 @@ export default function LandingFooter() {
       </ScrollLink>
 
       <Typography variant="caption">
-        TuliA.com2021 © All rights reserved
-        <br /> Copyright: &nbsp;
-        <a href="mailto:dpam8280@gmail.com">LG.tr|_|th</a>
+        © All rights reserved
+        <br /> Made by &nbsp;
+        <Link href="https://minimals.cc/">minimals.cc</Link>
       </Typography>
     </Container>
   );

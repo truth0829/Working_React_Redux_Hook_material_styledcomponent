@@ -16,7 +16,7 @@ function responsiveFontSizes({ sm, md, lg }) {
   };
 }
 
-const FONT_PRIMARY = 'Gemunu Libre ExtraBold'; // Google Font
+const FONT_PRIMARY = 'Be Vietnam, sans-serif'; // Google Font
 // const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
 const typography = {

@@ -61,7 +61,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
             display: 'flex',
             alignItems: 'center',
             '& > *:not(:first-of-type)': {
-              ml: { xs: 0.5, sm: 2, lg: 3 }
+              ml: { xs: 1.5, sm: 2, lg: 3 }
             }
           }}
         >

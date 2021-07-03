@@ -1,21 +1,21 @@
 import { Icon } from '@iconify/react';
+import { useSnackbar } from 'notistack';
 import { useRef, useState } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 // material
 import { alpha } from '@material-ui/core/styles';
-import {
-  Box,
-  Avatar,
-  Button,
-  Divider,
-  MenuItem,
-  Typography
-} from '@material-ui/core';
+import { Button, Box, Divider, MenuItem, Typography } from '@material-ui/core';
+// routes
+import { PATH_DASHBOARD } from '../../routes/paths';
+// hooks
+import useAuth from '../../hooks/useAuth';
+import useIsMountedRef from '../../hooks/useIsMountedRef';
 // components
 import { MIconButton } from '../../components/@material-extend';
+import MyAvatar from '../../components/MyAvatar';
 import MenuPopover from '../../components/MenuPopover';
 
 // ----------------------------------------------------------------------
@@ -29,20 +29,23 @@ const MENU_OPTIONS = [
   {
     label: 'Profile',
     icon: personFill,
-    linkTo: '#'
+    linkTo: PATH_DASHBOARD.user.profile
   },
   {
     label: 'Settings',
     icon: settings2Fill,
-    linkTo: '#'
+    linkTo: PATH_DASHBOARD.user.account
   }
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const history = useHistory();
   const anchorRef = useRef(null);
-
+  const { enqueueSnackbar } = useSnackbar();
+  const isMountedRef = useIsMountedRef();
+  const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -50,6 +53,19 @@ export default function AccountPopover() {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      if (isMountedRef.current) {
+        history.push('/');
+        handleClose();
+      }
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Unable to logout', { variant: 'error' });
+    }
   };
 
   return (
@@ -74,10 +90,7 @@ export default function AccountPopover() {
           })
         }}
       >
-        <Avatar
-          alt="My Avatar"
-          src="/static/mock-images/avatars/avatar_default.jpg"
-        />
+        <MyAvatar />
       </MIconButton>
 
       <MenuPopover
@@ -88,10 +101,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            displayName
+            {user.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            email
+            {user.email}
           </Typography>
         </Box>
 
@@ -120,7 +133,12 @@ export default function AccountPopover() {
         ))}
 
         <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color="inherit" variant="outlined">
+          <Button
+            fullWidth
+            color="inherit"
+            variant="outlined"
+            onClick={handleLogout}
+          >
             Logout
           </Button>
         </Box>

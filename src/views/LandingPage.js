@@ -6,7 +6,10 @@ import {
   LandingHero,
   LandingFooter,
   LandingMinimal,
-  LandingCleanInterfaces
+  LandingDarkMode,
+  LandingAdvertisement,
+  LandingCleanInterfaces,
+  LandingHugePackElements
 } from '../components/landing-page';
 
 // ----------------------------------------------------------------------
@@ -25,14 +28,17 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function LandingPage() {
   return (
-    <RootStyle title="we find the service for you | TuliA.com" id="move_top">
+    <RootStyle
+      title="The starting point for your next project | Minimal-UI"
+      id="move_top"
+    >
       <LandingHero />
       <ContentStyle>
         <LandingMinimal />
-        {/* <LandingHugePackElements /> */}
-        {/* <LandingDarkMode /> */}
+        <LandingHugePackElements />
+        <LandingDarkMode />
         <LandingCleanInterfaces />
-        {/* <LandingAdvertisement /> */}
+        <LandingAdvertisement />
         <LandingFooter />
       </ContentStyle>
     </RootStyle>

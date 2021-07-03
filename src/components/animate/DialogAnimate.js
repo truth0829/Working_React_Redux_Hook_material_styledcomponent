@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // material
 import { Dialog } from '@material-ui/core';
 //
-import { varFadeInUp } from '.';
+import { varFadeInUp } from './variants';
 
 // ----------------------------------------------------------------------
 

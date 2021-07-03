@@ -13,6 +13,8 @@ import {
   Typography,
   useMediaQuery
 } from '@material-ui/core';
+// routes
+import { PATH_HOME } from '../../routes/paths';
 //
 import { varFadeInUp, MotionInView, varFadeInRight } from '../animate';
 
@@ -123,7 +125,7 @@ export default function LandingHugePackElements() {
                   color="inherit"
                   variant="outlined"
                   component={RouterLink}
-                  to="#"
+                  to={PATH_HOME.components}
                 >
                   View All Components
                 </Button>
@@ -142,7 +144,7 @@ export default function LandingHugePackElements() {
               pl: { sm: '16% !important', md: '0 !important' }
             }}
           >
-            {[...Array(3)].map((screen, index) => (
+            {[...Array(3)].map((_, index) => (
               <ScreenStyle
                 key={index}
                 threshold={0.72}

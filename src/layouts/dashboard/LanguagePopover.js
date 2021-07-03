@@ -1,35 +1,18 @@
 import { useRef, useState } from 'react';
 // material
 import { Box, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core';
+// hooks
+import useLocales from '../../hooks/useLocales';
 // components
 import MenuPopover from '../../components/MenuPopover';
 import { MIconButton } from '../../components/@material-extend';
 
 // ----------------------------------------------------------------------
 
-const LANGS = [
-  {
-    value: 'en',
-    label: 'English',
-    icon: '/static/icons/ic_flag_en.svg'
-  },
-  {
-    value: 'de',
-    label: 'German',
-    icon: '/static/icons/ic_flag_de.svg'
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/static/icons/ic_flag_fr.svg'
-  }
-];
-
-// ----------------------------------------------------------------------
-
 export default function LanguagePopover() {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const { allLang, currentLang, onChangeLang } = useLocales();
 
   return (
     <>
@@ -43,7 +26,7 @@ export default function LanguagePopover() {
           ...(open && { bgcolor: 'action.selected' })
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={currentLang.icon} alt={currentLang.label} />
       </MIconButton>
 
       <MenuPopover
@@ -52,11 +35,14 @@ export default function LanguagePopover() {
         anchorEl={anchorRef.current}
       >
         <Box sx={{ py: 1 }}>
-          {LANGS.map((option) => (
+          {allLang.map((option) => (
             <MenuItem
               key={option.value}
-              selected={option.value === LANGS[0].value}
-              onClick={() => setOpen(false)}
+              selected={option.value === currentLang.value}
+              onClick={() => {
+                onChangeLang(option.value);
+                setOpen(false);
+              }}
               sx={{ py: 1, px: 2.5 }}
             >
               <ListItemIcon>

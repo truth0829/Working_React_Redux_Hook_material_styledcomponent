@@ -1,13 +1,12 @@
 import faker from 'faker';
 import PropTypes from 'prop-types';
-import { set, sub, formatDistanceToNow } from 'date-fns';
 import { noCase } from 'change-case';
-import { Icon } from '@iconify/react';
-
 import { useRef, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { set, sub, formatDistanceToNow } from 'date-fns';
+import { Icon } from '@iconify/react';
 import bellFill from '@iconify/icons-eva/bell-fill';
 import clockFill from '@iconify/icons-eva/clock-fill';
-import { Link as RouterLink } from 'react-router-dom';
 import doneAllFill from '@iconify/icons-eva/done-all-fill';
 // material
 import {
@@ -150,8 +149,7 @@ NotificationItem.propTypes = {
 };
 
 function NotificationItem({ notification }) {
-  const { avatar } = renderContent(notification);
-  const { title } = renderContent(notification);
+  const { avatar, title } = renderContent(notification);
 
   return (
     <ListItem

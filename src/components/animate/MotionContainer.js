@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 // material
 import { Box } from '@material-ui/core';
 //
-import { varWrapEnter } from '.';
+import { varWrapEnter } from './variants';
 
 // ----------------------------------------------------------------------
 
